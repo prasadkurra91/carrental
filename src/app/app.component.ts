@@ -59,7 +59,7 @@ export class AppComponent implements OnInit {
 
 
   onRegister(){
-    this.http.post("https://freeapi.miniprojectideas.com/api/ZoomCar/AddNewUser",this.registerObj).subscribe((res:any)=>{
+    this.http.post("https://cors-anywhere.herokuapp.com/https://freeapi.miniprojectideas.com/api/ZoomCar/AddNewUser",this.registerObj).subscribe((res:any)=>{
       if(res.result){
         alert("User Registration Success")
         this.closeModal()
@@ -80,7 +80,7 @@ export class AppComponent implements OnInit {
   }
 
   onLogin(){
-    this.http.post("https://freeapi.miniprojectideas.com/api/ZoomCar/Login",this.registerObj).subscribe((res:any)=>{
+    this.http.post("https://cors-anywhere.herokuapp.com/https://freeapi.miniprojectideas.com/api/ZoomCar/Login",this.registerObj).subscribe((res:any)=>{
       if(res.result){
         alert("Login Successfull")
         this.closeModal()

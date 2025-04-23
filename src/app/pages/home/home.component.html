@@ -1,0 +1,64 @@
+<!-- Hero Section -->
+<div class="hero-section text-center py-5">
+    <div class="container">
+      <h1 class="display-4 mb-4 fade-in">Find Your Perfect Rental Car</h1>
+      <p class="lead mb-4 fade-in">Rent a car from trusted hosts or earn money by sharing your vehicle</p>
+      <div class="search-box p-4 bg-white rounded shadow">
+        <form action="search.html" class="row g-3">
+          <div class="col-md-4">
+            <select class="form-select" name="selectedLocation" [(ngModel)]="selectedLocation">
+              <option value="">Select Location</option>
+              @for (item of locationArray; track $index) {
+                <option [value]="item.locationId">{{item.title}}</option>
+              }
+             
+            </select>
+          </div>
+          <div class="col-md-3">
+            <input type="date" class="form-control" placeholder="Start Date">
+          </div>
+          <div class="col-md-3">
+            <input type="date" class="form-control" placeholder="End Date">
+          </div>
+          <div class="col-md-2">
+            <button type="button" [routerLink]="'/search/'+this.selectedLocation" class="btn search w-100">
+              <i class="search"></i> Search
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+  
+  
+  
+  <!-- Features Section -->
+  <section class="features py-5">
+    <div class="container">
+      <h2 class="text-center mb-5">Why Choose CarRent?</h2>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="feature-card text-center">
+            <i class="bi bi-shield-check display-4"></i>
+            <h3>Safe & Secure</h3>
+            <p>All hosts are verified and cars are regularly inspected</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="feature-card text-center">
+            <i class="bi bi-cash-coin display-4"></i>
+            <h3>Best Prices</h3>
+            <p>Competitive prices and no hidden fees</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="feature-card text-center">
+            <i class="bi bi-geo-alt display-4"></i>
+            <h3>Convenient Locations</h3>
+            <p>Find cars near you with our location-based search</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>

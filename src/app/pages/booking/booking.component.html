@@ -1,0 +1,135 @@
+<!-- Car Details Section -->
+<div class="container py-5">
+  <div class="row">
+    <!-- Car Images -->
+    <div class="col-md-6">
+      <div id="carImages" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img
+              [src]="carData.imageUrl"
+              id="carImage"
+              class="d-block w-100"
+              alt="Car Image"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Car Info and Booking Form -->
+    <div class="col-md-6">
+      <div class="d-flex align-items-center mb-3">
+        <h2 id="carTitle" class="mb-0 me-3">
+          {{ carData.brand }} - {{ carData.name }}
+        </h2>
+        <span class="badge bg-primary" id="vehicleNumber">{{
+          carData.vehicalNo
+        }}</span>
+      </div>
+      <p class="lead mb-4" id="carPrice">{{ carData.pricing }}</p>
+      <!-- Car Features -->
+      <div class="mb-4">
+        <h4>Accessories</h4>
+
+        <ul class="list-unstyled" id="accessoriesList">
+          @for (item of carData.zoomAccessriess; track $index) {
+          <li>{{ item.accessoriessTitle }}</li>
+          }
+        </ul>
+      </div>
+
+      <!-- Registraion info -->
+
+      <div class="mb-4">
+        <p class="text-muted">
+          <i class="bi bi-calender"></i>
+          Registrared on:
+          <span id="registraredDate">{{
+            carData.registredOn | date : "dd-MMM-yy"
+          }}</span>
+        </p>
+      </div>
+
+      <!-- Booking Form -->
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Book This Car</h4>
+          <form [formGroup]="bookingForm" id="bookingForm">
+            <div class="mb-3">
+              <label class="form-label">Travel Date</label>
+              <input
+                type="date"
+                name="travelDate"
+                class="form-control"
+                formControlName="travelDate"
+                required
+              />
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Start Time</label>
+              <input
+                type="time"
+                name="startTime"
+                class="form-control"
+                formControlName="startTime"
+                required
+              />
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">From Location</label>
+              <select formArrayName="fromLocationId" name="fromLocationId" class="form-control" required>
+
+                <option value="">Select pickup location</option>
+                <!-- Locations will be populated dynamically -->
+                 @for (item of locationList$ | async; track $index) {
+                    <option [value]="item.locationId">{{item.title}}</option>
+                 }
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">To Location</label>
+              <select formControlName="toLocationId" name="toLocationId" class="form-control" required>
+                <option value="">Select drop location</option>
+                <!-- Locations will be populated dynamically -->
+                @for (item of locationList$ | async; track $index) {
+                    <option [value]="item.locationId">{{item.title}}</option>
+                 }
+              </select>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Pickup Address</label>
+              <textarea
+                name="pickupAddress"
+                class="form-control"
+                rows="2"
+                formControlName="pickUpAddress"
+                required
+                placeholder="Enter delivery address"
+              ></textarea>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Alternate Contact Number</label>
+              <input
+                type="tel"
+                name="alternateContactNo"
+                class="form-control"
+                formControlName="alternateContactNo"
+                required
+                placeholder="Enter alternate contact number"
+              />
+            </div>
+
+            <button (click)="onBook()" type="submit" class="btn btn-primary w-100">
+              Book Now - <span id="bookingPrice"></span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

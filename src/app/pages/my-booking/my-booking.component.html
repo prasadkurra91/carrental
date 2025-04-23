@@ -1,0 +1,49 @@
+<div class="container py-5">
+  <h2 class="mb-4">My Bookings</h2>
+  <div class="row g-4" id="bookingsList">
+    @for (item of myBookingList; track $index) {
+    <div class="col-md-6 col-lg-4">
+      <div class="card booking-card h-100">
+        <img
+          [src]="item.imageUrl"
+          class="card-img-top"
+          
+        />
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-start mb-2">
+            <h5 class="card-title mb-0">
+              {{item.brand}} - {{item.name}}
+            </h5>
+            @if(item.isComplete){
+                <span class="badge bg-success">Completed</span>
+            }@else {
+                <span class="badge bg-warning">Active</span>   
+            }
+            
+            
+          </div>
+          <ul class="list-unstyled">
+            <li class="mb-2">
+              <i class="bi bi-calendar-event"></i>
+              <strong>Travel Date:{{item.travelDate | date:'dd-MMM-yy'}}</strong>
+            </li>
+            <li class="mb-2">
+              <i class="bi bi-geo-alt"></i>
+              <strong>Location: {{item.locationTitle}}</strong> 
+            </li>
+            <li class="mb-2">
+              <i class="bi bi-tag"></i>
+              <strong>Price:{{item.pricingDescription}}</strong> 
+            </li>
+          </ul>
+          <div class="mt-3">
+            <h6>Contact Details</h6>
+            <p class="mb-1">{{item.carOwnerName}} - {{item.carOwnermobileNo}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    }
+  </div>
+</div>
